@@ -25,7 +25,6 @@ class Game:
 
         self.current_color = "w"
 
-
     def update(self):
         """
         Game loop
@@ -65,16 +64,6 @@ class Game:
                 self.current_color = "b"
             else:
                 self.current_color = "w"
-
-
-    def board_to_str(self) -> str:
-        """
-        Convert board to string
-        """
-        board_str = ""
-        for i in range(8):
-            board_str = board_str + ','.join(self.board[i]) + ','
-        return  board_str[:-1]
 
     def find_piece(self, code : str):
         """
@@ -146,6 +135,8 @@ class Game:
 
         return
 
+
+    # Pieces
     class King:
         def __init__(self, color : str) -> None:
             self.color = color
@@ -167,7 +158,7 @@ class Game:
                 elif _board[_position[0]-1][_position[1]][0] != self.color:
                     available_moves.append([[_position[0]-1, _position[1]], 'eat u'])
             except:
-                print("Cant move up exception")
+                pass
 
             # down
             try:
@@ -176,7 +167,7 @@ class Game:
                 elif _board[_position[0]+1][_position[1]][0] != self.color:
                     available_moves.append([[_position[0]+1, _position[1]], 'eat d'])
             except:
-                print("Cant move up exception")
+                pass
 
             # left
             try:
@@ -185,7 +176,7 @@ class Game:
                 elif _board[_position[0]][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0], _position[1]-1], 'eat L'])
             except:
-                print("Cant move up exception")
+                pass
 
             # right
             try:
@@ -194,7 +185,7 @@ class Game:
                 elif _board[_position[0]][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0], _position[1]+1], 'eat R'])
             except:
-                print("Cant move up exception")
+                pass
 
             # up right
             try:
@@ -203,7 +194,7 @@ class Game:
                 elif _board[_position[0]-1][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0]-1, _position[1]+1], 'eat uR'])
             except:
-                print("Cant move up right exception")
+                pass
 
             # up left
             try:
@@ -212,7 +203,7 @@ class Game:
                 elif _board[_position[0]-1][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0]-1, _position[1]-1], 'eat uL'])
             except:
-                print("Cant move up left exception")
+                pass
 
             # down right
             try:
@@ -221,7 +212,7 @@ class Game:
                 elif _board[_position[0]+1][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0]+1, _position[1]+1], 'eat dR'])
             except:
-                print("Cant move down right exception")
+                pass
 
             # down left
             try:
@@ -230,7 +221,7 @@ class Game:
                 elif _board[_position[0]+1][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0]+1, _position[1]-1], 'eat dR'])
             except:
-                print("Cant move down left exception")
+                pass
 
             return available_moves
 
@@ -343,7 +334,7 @@ class Game:
                 elif _board[_position[0]-2][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0]-2, _position[1]+1], 'eat uR'])
             except:
-                print("Cant move up right exception")
+                pass
 
             # up left
             try:
@@ -352,7 +343,7 @@ class Game:
                 elif _board[_position[0]-2][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0]-2, _position[1]-1], 'eat uL'])
             except:
-                print("Cant move up left exception")
+                pass
 
             # down right
             try:
@@ -361,7 +352,7 @@ class Game:
                 elif _board[_position[0]+2][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0]+2, _position[1]+1], 'eat dR'])
             except:
-                print("Cant move down right exception")
+                pass
 
             # down left
             try:
@@ -370,7 +361,7 @@ class Game:
                 elif _board[_position[0]+2][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0]+2, _position[1]-1], 'eat dL'])
             except:
-                print("Cant move down left exception")
+                pass
 
             # right up
             try:
@@ -379,7 +370,7 @@ class Game:
                 elif _board[_position[0]-1][_position[1]+2][0] != self.color:
                     available_moves.append([[_position[0]-1, _position[1]+2], 'eat Ru'])
             except:
-                print("Cant move right up exception")
+                pass
 
             # right down
             try:
@@ -388,7 +379,7 @@ class Game:
                 elif _board[_position[0]+1][_position[1]+2][0] != self.color:
                     available_moves.append([[_position[0]+1, _position[1]+2], 'eat Rd'])
             except:
-                print("Cant move right down exception")
+                pass
 
             # left up
             try:
@@ -397,7 +388,8 @@ class Game:
                 elif _board[_position[0]-1][_position[1]-2][0] != self.color:
                     available_moves.append([[_position[0]-1, _position[1]-2], 'eat Lu'])
             except:
-                print("Cant move left up exception")
+                pass
+
 
             # left down
             try:
@@ -406,7 +398,7 @@ class Game:
                 elif _board[_position[0]+1][_position[1]-2][0] != self.color:
                     available_moves.append([[_position[0]+1, _position[1]-2], 'eat Ld'])
             except:
-                print("Cant move left down exception")
+                pass
 
             return available_moves
 
@@ -494,13 +486,13 @@ class Game:
                 if _board[_position[0]+self.direction][_position[1]+1] != ' -' and _board[_position[0]+self.direction][_position[1]+1][0] != self.color:
                     available_moves.append([[_position[0]+self.direction, _position[1]+1], "eat r"])
             except:
-                print("Cant eat on the right exception")
+                pass            
             # eat on the left
             try:
                 if _board[_position[0]+self.direction][_position[1]-1] != ' -' and _board[_position[0]+self.direction][_position[1]-1][0] != self.color:
                     available_moves.append([[_position[0]+self.direction, _position[1]-1], "eat l"])
             except:
-                print("Cant eat on the left exception")
+                pass
             # move two squares forward
             if self.moves == 0 and _board[_position[0]+self.direction][_position[1]] == ' -' and _board[_position[0]+self.direction*2][_position[1]] == ' -':
                 available_moves.append([[_position[0]+self.direction*2, _position[1]], "2"])
